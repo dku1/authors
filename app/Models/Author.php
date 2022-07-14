@@ -20,6 +20,6 @@ class Author extends Model
 
     public function getInitials(): string
     {
-        return $this->surname . ' ' . mb_substr($this->name, 0, 1)  . '. ' . mb_substr($this->patronymic,0,1);
+        return $this->surname . ' ' . mb_substr($this->name, 0, 1)  . '. ' . mb_substr($this->patronymic,0,1) . '.';
     }
 }

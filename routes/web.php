@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AuthorController as AdminAuthorController;
+use App\Http\Controllers\Admin\BookController as AdminBookController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,6 +25,7 @@ Route::group([
     'as' => 'admin.',
 ], function (){
     Route::resource('authors', AdminAuthorController::class);
+    Route::resource('books', AdminBookController::class);
 });
 
 

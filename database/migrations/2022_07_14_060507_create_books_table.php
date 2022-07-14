@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('title', 255);
             $table->unsignedInteger('author_id');
             $table->unsignedInteger('pages');
-            $table->year('published');
+            $table->string('published', 255);
             $table->timestamps();
             $table->softDeletes();
         });

@@ -1,27 +1,27 @@
 @extends('admin.layouts.master')
 
-@section('title', 'Авторы')
+@section('title', 'Книги')
 
 @section('content')
-    <h4 class="text-center mt-3 mb-3">Список авторов</h4>
+    <h4 class="text-center mt-3 mb-3">Список книг</h4>
     <table class="table table-dark table-hover text-center">
         <tr>
             <th scope="col">ID</th>
+            <th scope="col">Название</th>
             <th scope="col">Автор</th>
-            <th scope="col">Количество книг</th>
             <th scope="col">Действия</th>
         </tr>
-        @foreach($authors as $author)
+        @foreach($books as $book)
         <tr>
-            <td class="align-middle">{{ $author->id }}</td>
-            <td class="align-middle">{{ $author->getInitials() }}</td>
-            <td class="align-middle">{{ $author->books->count() }}</td>
+            <td class="align-middle">{{ $book->id }}</td>
+            <td class="align-middle">{{ $book->title }}</td>
+            <td class="align-middle">{{ $book->author->getInitials() }}</td>
             <td class="align-middle">
-                <form action="{{ route('admin.authors.destroy', $author) }}"
+                <form action="{{ route('admin.books.destroy', $book) }}"
                       method="post">
                     @method('DELETE')
                     @csrf
-                    <a href="{{ route('admin.authors.show', $author) }}"
+                    <a href="{{ route('admin.books.show', $book) }}"
                        class="btn text-primary">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                              fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
@@ -30,7 +30,7 @@
                                 d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
                         </svg>
                     </a>
-                    <a href="{{ route('admin.authors.edit', $author) }}"
+                    <a href="{{ route('admin.books.edit', $book) }}"
                        class="btn text-warning">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                              fill="currentColor" class="bi bi-pencil-fill"
@@ -52,9 +52,9 @@
         @endforeach
     </table>
     <div class="mb-2">
-        <a href="{{ route('admin.authors.create') }}" class="btn btn-success">Добавить</a>
+        <a href="{{ route('admin.books.create') }}" class="btn btn-success">Добавить</a>
     </div>
     <div class="d-flex justify-content-center paginate">
-        {{ $authors->links('pagination::bootstrap-4') }}
+        {{ $books->links('pagination::bootstrap-4') }}
     </div>
 @endsection

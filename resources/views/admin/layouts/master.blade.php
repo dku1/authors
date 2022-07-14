@@ -31,7 +31,7 @@
                         <a class="nav-link text-white" href="{{ route('admin.authors.index') }}">Авторы</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="#">Книги</a>
+                        <a class="nav-link text-white" href="{{ route('admin.books.index') }}">Книги</a>
                     </li>
                 </ul>
             </div>
@@ -41,7 +41,7 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-6 m-auto">
+        <div class="col-9 m-auto">
             @yield('content')
         </div>
     </div>
