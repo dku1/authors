@@ -14,8 +14,8 @@
         @foreach($books as $book)
         <tr>
             <td class="align-middle">{{ $book->id }}</td>
-            <td class="align-middle">{{ $book->title }}</td>
-            <td class="align-middle">{{ $book->author->getInitials() }}</td>
+            <td class="align-middle"><a href="{{ route('admin.books.show', $book) }}" class="text-decoration-none text-white">{{ $book->title }}</a></td>
+            <td class="align-middle"><a href="{{ route('admin.authors.show', $book->author) }}" class="text-decoration-none text-white">{{ $book->author->getInitials() }}</a></td>
             <td class="align-middle">
                 <form action="{{ route('admin.books.destroy', $book) }}"
                       method="post">

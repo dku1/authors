@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Author;
+use App\Services\Admin\AuthorService;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -12,6 +13,20 @@ use Illuminate\Http\RedirectResponse;
 
 class AuthorController extends Controller
 {
+
+    /**
+     * @var AuthorService
+     */
+    private AuthorService $service;
+
+    /**
+     * @param AuthorService $service
+     */
+    public function __construct(AuthorService $service)
+    {
+        $this->service = $service;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -42,6 +57,7 @@ class AuthorController extends Controller
     public function store(AuthorRequest $request): RedirectResponse
     {
         Author::create($request->validated());
+        session()->flash('success', 'Автор добавлен');
         return redirect()->route('admin.authors.index');
     }
 
@@ -77,6 +93,7 @@ class AuthorController extends Controller
     public function update(AuthorRequest $request, Author $author): RedirectResponse
     {
         $author->update($request->validated());
+        session()->flash('success', 'Изменения сохранены');
         return redirect()->route('admin.authors.show', $author);
     }
 
@@ -88,7 +105,7 @@ class AuthorController extends Controller
      */
     public function destroy(Author $author): RedirectResponse
     {
-        $author->delete();
+        $this->service->destroy($author);
         return redirect()->route('admin.authors.index');
     }
 }
