@@ -17,7 +17,7 @@
 </head>
 <body>
 
-@include('admin.layouts.header')
+@include('layouts.header')
 @include('admin.layouts.flash')
 
 <div class="container">
