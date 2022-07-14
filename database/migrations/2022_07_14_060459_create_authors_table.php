@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('name', 255);
             $table->string('patronymic', 255);
             $table->string('country')->nullable();
-            $table->dateTime('birthday')->nullable();
+            $table->date('birthday')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
